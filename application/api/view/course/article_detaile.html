@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-cn">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <title>{$article_info.title}</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <link rel="dns-prefetch" href="https://staticcdn.igetget.com"/>
+    <link rel="dns-prefetch" href="https://piccdn.igetget.com"/>
+    <script type="text/javascript">
+    window.onerror = function (msg, url, lineNum, colNum, error) {
+      var err = { msg: msg, url: url, line: lineNum, column: colNum }
+      __uploadErrorMsg(err)
+    }
+
+    function __errorHandler (element) {
+      var err = {
+        tagName: element.tagName,
+        srcUrl: element.src || element.href,
+        pageUrl: window.location.href,
+        referrer: document.referrer,
+        isSecondTime: false
+      }
+
+      if (element.getAttribute('data-fallbacked')) {
+        err.isSecondTime = true
+        __uploadErrorMsg(err)
+        return false
+      }
+
+      __uploadErrorMsg(err)
+
+      try {
+        var url = new URL(err.srcUrl)
+        if (url.host === 'staticcdn.igetget.com') {
+          url.host = 'staticcdn2.igetget.com'
+        }
+        var ele = document.createElement(err.tagName)
+        // 遍历属性, 做href,src属性替换
+        for (var i = 0; i < element.attributes.length; i++) {
+          var attr = element.attributes[i]
+          if (attr.nodeName === 'onerror') {
+          } else if (attr.nodeName === 'href') {
+            ele[attr.nodeName] = url
+          } else if (attr.nodeName === 'src') {
+            ele[attr.nodeName] = url
+          } else {
+            ele[attr.nodeName] = attr.nodeValue
+          }
+        }
+        if (err.tagName === 'SCRIPT') {
+          ele.src = url.toString()
+          ele.setAttribute('data-fallbacked', 1)
+        } else if (err.tagName === 'LINK') {
+          ele.href = url.toString()
+          ele.setAttribute('data-fallbacked', 1)
+        }
+        ele.onerror = function () {
+          window.__errorHandler(ele)
+        }
+
+        element.parentElement.appendChild(ele)
+      } catch (e) {
+        console.log(e)
+      }
+    }
+
+    function __uploadErrorMsg (err) {
+      var oImg = new Image()
+      var errMsg = encodeURIComponent(JSON.stringify(err))
+      oImg.src = '/native/errorcollect?err=' + errMsg
+    }
+    </script>
+
+    <script type="text/javascript" src="https://staticcdn.igetget.com/docker/iget-h5-node/js/libs/flexible.js"></script>
+
+
+
+    <link href="https://staticcdn.igetget.com/docker/iget-h5-node/css/project/subscribe/index-new.8f7cda1d1e.css" rel="stylesheet">
+
+    <link href="https://staticcdn.igetget.com/docker/iget-h5-node/css/project/subscribe/article-new.592d63bc76.css" rel="stylesheet">
+
+    <script type="text/javascript">
+        var baseUrl = "https://staticcdn.igetget.com/docker/iget-h5-node/";
+    </script>
+
+
+    <script>
+    var APPVersion = 0;
+    ! function(a, b) {
+        function c() {
+            var b = f.getBoundingClientRect().width;
+            if(a.navigator.appVersion.match(/iphone/gi) && b < 500){
+                b = b * i
+            }
+            b / i > 540 && (b = 540 * i);
+            var c = b / 10;
+            f.style.fontSize = c + "px", k.rem = a.rem = c
+        }
+        var d, e = a.document,
+            f = e.documentElement,
+            g = e.querySelector('meta[name="viewport"]'),
+            h = e.querySelector('meta[name="flexible"]'),
+            i = 0,
+            j = 0,
+            k = b.flexible || (b.flexible = {});
+        if (g) {
+            console.warn("将根据已有的meta标签来设置缩放比例");
+            var l = g.getAttribute("content").match(/initial\-scale=([\d\.]+)/);
+            l && (j = parseFloat(l[1]), i = parseInt(1 / j))
+        } else if (h) {
+            var m = h.getAttribute("content");
+            if (m) {
+                var n = m.match(/initial\-dpr=([\d\.]+)/),
+                    o = m.match(/maximum\-dpr=([\d\.]+)/);
+                n && (i = parseFloat(n[1]), j = parseFloat((1 / i).toFixed(2))), o && (i = parseFloat(o[1]), j = parseFloat((1 / i).toFixed(2)))
+            }
+        }
+        if (!i && !j) {
+            var p = (a.navigator.appVersion.match(/android/gi), a.navigator.appVersion.match(/iphone/gi)),
+                q = a.devicePixelRatio;
+            i = p ? q >= 3 && (!i || i >= 3) ? 3 : q >= 2 && (!i || i >= 2) ? 2 : 1 : 1, j = 1 / i
+        }
+        if (f.setAttribute("data-dpr", i), !g)
+            if (g = e.createElement("meta"), g.setAttribute("name", "viewport"), g.setAttribute("content", "initial-scale=" + j + ", maximum-scale=" + j + ", minimum-scale=" + j + ", user-scalable=no"), f.firstElementChild) f.firstElementChild.appendChild(g);
+            else {
+                var r = e.createElement("div");
+                r.appendChild(g), e.write(r.innerHTML)
+            }
+        a.addEventListener("resize", function() {
+            clearTimeout(d), d = setTimeout(c, 300)
+        }, !1), a.addEventListener("pageshow", function(a) {
+            a.persisted && (clearTimeout(d), d = setTimeout(c, 300))
+        }, !1), "complete" === e.readyState ? e.body.style.fontSize = 12 * i + "px" : e.addEventListener("DOMContentLoaded", function() {
+            e.body.style.fontSize = 12 * i + "px"
+        }, !1), c(), k.dpr = a.dpr = i, k.refreshRem = c, k.rem2px = function(a) {
+            var b = parseFloat(a) * this.rem;
+            return "string" == typeof a && a.match(/rem$/) && (b += "px"), b
+        }, k.px2rem = function(a) {
+            var b = parseFloat(a) / this.rem;
+            return "string" == typeof a && a.match(/px$/) && (b += "rem"), b
+        }
+    }(window, window.lib || (window.lib = {}));
+    </script>
+
+    <link href="https://staticcdn.igetget.com/docker/iget-h5-node/css/project/subscribe/index-new.8f7cda1d1e.css" rel="stylesheet">
+
+    <link href="https://staticcdn.igetget.com/docker/iget-h5-node/css/project/subscribe/article-new.592d63bc76.css" rel="stylesheet">
+
+
+    <!-- 新版本编辑器样式 -->
+
+    <link href="https://staticcdn.igetget.com/www/editor/dist/preview.b5a1058ad45dab0bd267.css" rel="stylesheet"/>
+        <style>
+        @font-face {
+            font-family: "font-text";
+            src: url(https://piccdn.igetget.com/fontminify/eacb20bcc2a485d08633d9f9634861cb.woff);
+        }
+        .article .article-body p,.article .article-body ul li,.article .article-body ol li,.article .article-body .tips p b,.article .elite-module {
+            font-family: "font-text";
+        }
+
+        @font-face {
+            font-family: "font-title";
+            src: url(https://piccdn.igetget.com/fontminify/1673ebbbd65a8183e7dd80f86c2ed0fd.woff);
+        }
+        .article .title,.article h3.letter-item,.article h4.letter-item,.article .article-body h2.titleCenter {
+            font-family: "font-title";
+        }
+
+        @font-face {
+            font-family: "font-tip";
+            src: url(https://piccdn.igetget.com/fontminify/5ab648861837856566a4711fd5db4159.woff);
+        }
+        .article .article-body .tag span,.article .article-body figure figcaption,.article .article-body .audio .audio-tips .text,.article .article-body .tips p,.article .article-body .audio .info span,.article .author {
+            font-family: "font-tip";
+        }
+
+        @font-face {
+            font-family: "font-titleSmall";
+            src: url(https://piccdn.igetget.com/fontminify/dcf36c45f8ceb6b5899e8bce3ee3bd4c.woff);
+        }
+        .article .article-body h2 {
+            font-family: "font-titleSmall";
+        }
+
+        @font-face {
+            font-family: "font-quoted";
+            src: url(https://piccdn.igetget.com/fontminify/bf8a1ab319f4bb07cf31bebc2d8eab81.woff);
+        }
+        .article .article-body blockquote,.article .article-body blockquote p {
+            font-family: "font-quoted";
+        }
+
+        @font-face {
+            font-family: "font-bold";
+            src: url(https://piccdn.igetget.com/fontminify/97ac136360841a1d6512da42b2a99196.woff);
+        }
+        .article .article-body p b,.article .article-body b {
+            font-family: "font-bold";
+        }
+    </style>
+    <script type="text/javascript">
+        var user = {"openid":"olFg1szQbEJSbUZtQuBK8BpxnZN8","nickname":"container","sex":1,"language":"zh_CN","city":"漳州","province":"福建","country":"中国","headimgurl":"http://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKqmlgRKDoQ7ydNrNyklcibZHtJiaGI3lBGjoebyes5ZHMvtpWkvAicicaE3JqTvv7x6eX7btrfXOI8ZQ/0","privilege":[],"unionid":"oDI7Dvkc35fZGzUZQt_6a_M9AHnc"};
+        var id = "jaWZ0XaVLWzD8JEYoZ5AkeqO3vwlA2WeTNC7V4pRMKB4l61yj7bN29gmnxrdGVm0";
+        var votestatic = "";
+    </script>
+<!-- 该模块是前端的全局变量，比如ID，如下例子 -->
+    <!-- <script type="text/javascript">
+        var productId = "";
+    </script> -->
+</head>
+<body v-cloak>
+<article class="article default">
+    <h1 class="title name-jaWZ0XaVLWzD8JEYoZ5AkeqO3vwlA2WeTNC7V4pRMKB4l61yj7bN29gmnxrdGVm0">{$article_info.title}</h1>
+    <div class="author">
+        <img src="https://piccdn.igetget.com/img/201707/28/201707281123073248911910.jpg@100w_100h"/>
+        <p>{$article_info.author_name}</p>
+        <span class="time">{:date('Y-m-d H:i',$article_info['create_time'])}</span>
+    </div>
+    <div class="line"></div>
+	<div style="display:none;" v-cloak>
+			container
+		{&quot;openid&quot;:&quot;olFg1szQbEJSbUZtQuBK8BpxnZN8&quot;,&quot;nickname&quot;:&quot;container&quot;,&quot;sex&quot;:1,&quot;language&quot;:&quot;zh_CN&quot;,&quot;city&quot;:&quot;漳州&quot;,&quot;province&quot;:&quot;福建&quot;,&quot;country&quot;:&quot;中国&quot;,&quot;headimgurl&quot;:&quot;http://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKqmlgRKDoQ7ydNrNyklcibZHtJiaGI3lBGjoebyes5ZHMvtpWkvAicicaE3JqTvv7x6eX7btrfXOI8ZQ/0&quot;,&quot;privilege&quot;:[],&quot;unionid&quot;:&quot;oDI7Dvkc35fZGzUZQt_6a_M9AHnc&quot;}
+	</div>
+    <div class="article-body">
+				<div class="player-v2" id="audio-1514300725158">
+					<div class="player-wrap">
+						<!-- i-play / i-pause -->
+						<button class="i-play"></button>
+						<div class="progress-group">
+							<div class="audio-title">{$article_info.title}</div>
+							<input type="range" min="0" max="100" value="0" data-current="0:00" data-max="12:17" data-total="737"/>
+						</div>
+                        {if condition="$article_info['audio']"}
+						<audio title="{$article_info.title}" src="http://igetoss.cdn.igetget.com/mp3/201712/26/201712262305410785861860.mp3" preload cover="https://piccdn.igetget.com/img/201704/24/201704242328257260784871.jpg" cover-img="https://piccdn.igetget.com/img/201704/24/201704242328257260784871.jpg"></audio>
+                        {/if}
+					</div>
+					<div class="player-tips">| 王煜全亲述 |</div>
+				</div>
+                <h2 class="titleCenter">
+                    <div>
+                        <span>今日内容看点</span>
+                    </div>
+                </h2>
+                <div class="text ">
+                    <p>通过阅读今天的内容，你将会掌握以下三个问题的答案： </p>
+                </div>
+                <!-- 需要处理空白p标签 -->
+                <div class="text ">
+                    <p><ol><li>The Void 娱乐中心为何被称为“地表最强娱乐设施”？</li><li>极致的 VR 交互体验需要怎样的技术支持？</li><li>为什么说智能文娱行业对 VR 需求非常强烈？</li></ol></p>
+                </div>
+                <!-- 需要处理空白p标签 -->
+                <div class="split"></div>
+                <div class="text ">
+                    <p>周一的时候我们已经说过，当下娱乐行业和 VR 结合以后，将会无限扩展我们的体验。那么今天我们就来为你专门介绍一下美国推出的第一家 VR 主题公园——The Void，看看他们是怎样通过 VR 创新应用来打造极致的娱乐体验的。</p><p>对 VR 迷来说，这家公司肯定不陌生，2016年7月，纽约开放了第一家 Void 娱乐中心，吸引了众多媒体和玩家去体验，他们都表示，这次体验实在是太不可思议了，就连科幻电影大导演斯皮尔·伯格也对它赞不绝口。Void 娱乐中心还被玩家称为“地表最强娱乐设施”。那么究竟 Void 提供了怎样的体验呢？我们暂时卖个关子，先来了解一下这家公司的历史，以及创始团队。</p>
+                </div>
+                <!-- 需要处理空白p标签 -->
+                <h2 >一、The Void 公司历史</h2>
+                <div class="text ">
+                    <p>The Void成立于2015年，总部位于美国犹他州，公司的名字取自“The Vision of Infinite Dimensions”的单词首字母，意思是“无限维度的视觉”，这也说明了 The Void 的创立初心，他们想要打造一个能够提供“超现实”的极致交互体验的未来娱乐中心。 </p>
+                </div>
+                <!-- 需要处理空白p标签 -->
+                <div class="text ">
+                    <p>The Void 创始团队有三位成员：</p><p><ul><li>首先是创始人 Ken Bretschneider，是一位连续跨界创业者。在创立 The Void 之前，他已经成立过网络安全公司 DigiCert、净化水公司 PeopleWater 等等。The Void 是他自掏腰包投资1300万美金的创业项目。</li><li>再来看联合创始人兼创意总监 Curtis Hickman，他是一位视觉艺术家和舞台魔术师。Curtis 有10几年的魔术经验，和著名魔术师大卫·科波菲尔、大卫·布莱恩都有交情，而且有过魔术上的合作。</li><li>另一位联合创始人兼首席技术官叫 James M. Jensen，他是一位多媒体交互设计师。</li></ul></p>
+                </div>
+                <!-- 需要处理空白p标签 -->
+                <figure>
+                    <img src="https://piccdn.igetget.com/img/201712/26/201712262313408192547810.jpg@750w"/>
+                    <figcaption>左起：Curtis、Ken,、James</figcaption>
+                </figure>
+                <div class="text ">
+                    <p>单看这样的阵容，就会让我们对这家公司充满期待。 </p>
+                </div>
+                <!-- 需要处理空白p标签 -->
+                <div class="text ">
+                    <p>Ken 在成立 The Void 之前，还有一段小插曲。他曾经打算耗资几百万美金建造一个大型的特色 VR 主题公园——Evermore，包括海盗船、幽灵森林、人工湖、季节性音乐会等等概念，其实我们现在看到的 Void 娱乐中心就是其中的一个景点。</p><p>Curtis 和 James 也正是在这个项目的工作期间加入到团队里的。2015年8月，Ken 在项目上持续努力了几年之后，对外宣布由于财政问题，项目需要暂停，随后整个团队转变发展战略，重点投入设计和建造小型 VR 娱乐中心。</p><p>The Void 在全球发展非常快，它的 VR 娱乐中心已经在全球5个地点开放售票了。有纽约的杜莎夫人蜡像馆、佛罗里达州的奥兰多迪士尼之泉、加州安奈海姆市的迪士尼小镇、多伦多的餐饮娱乐中心 The Rec Room，以及伦敦的 Westfield 购物中心。其中，位于伦敦和佛罗里达的中心，两周前才刚刚开放，而加州体验中心也将在明年1月份开放。</p>
+                </div>
+                <!-- 需要处理空白p标签 -->
+                <h2 >二、The Void 娱乐中心</h2>
+                <div class="text ">
+                    <p>先从整体上来看，Void 娱乐中心占地面积都不大，中心的核心区域被称作 Stage，也就是“舞台”。目前“舞台”有两种设计：</p><p><ul><li>一种是100平米左右的“景点式舞台”；</li><li>另一种相对大一点，就是350平米左右的“全维度舞台”。</li></ul></p>
+                </div>
+                <!-- 需要处理空白p标签 -->
+                <div class="text ">
+                    <p>这两种舞台不但面积不同，对应的功能和目的也不一样，“景点式舞台”为了保证比较快的流转率，一般设在著名景点，或者人流量大的地方，给玩家提供线性的体验。大一点的则设在特色的娱乐中心，给游客提供时间更长、非线性的完整体验，目的是吸引更多人来重复消费。</p>
+                </div>
+                <!-- 需要处理空白p标签 -->
+                <figure>
+                    <img src="https://piccdn.igetget.com/img/201712/26/201712262316582232437963.jpg@750w"/>
+                    <figcaption>The Void 娱乐中心效果图</figcaption>
+                </figure>
+                <div class="text ">
+                    <p>接着我们来看看娱乐中心的体验主题。</p><p>目前他们主要是跟著名的电影 IP 合作，比如纽约和多伦多的体验中心以电影《捉鬼敢死队》为主题。顺便说一句，《捉鬼敢死队》最近新拍了，所以正好可以借着电影的热映，帮他们作宣传。另外三个娱乐中心则以《星球大战》为主题，《星球大战》是不断重拍的，所以这个主题不用担心没有市场。&nbsp;<font color="#e8731f">这些故事情节并不是照搬之前的电影，而是重新改编设计过的。&nbsp;</font>在美国你花29美元就能在 Void 娱乐中心享受到一次20分钟左右的超现实极致 VR 体验。 </p>
+                </div>
+                <!-- 需要处理空白p标签 -->
+                <div class="text ">
+                    <p>那么这到底是一种什么样的体验呢？</p><p>一位体验过纽约《捉鬼敢死队》主题的 VR 迷说，每个玩家都穿上了全套的 VR 装备，包括一个头戴式的显示器、一个特殊定制的高科技背心，和一杆金属质感的枪械。 </p>
+                </div>
+                <!-- 需要处理空白p标签 -->
+                <figure>
+                    <img src="https://piccdn.igetget.com/img/201712/26/201712262318111490227570.jpg@750w"/>
+                    <figcaption>穿好 The Void 装备的玩家</figcaption>
+                </figure>
+                <div class="text ">
+                    <p>据了解，目前开放的体验都是4个人一组，共同对战敌人，和现有的主题公园中 3D 过山车、或者 4D 影院最不同的地方是在整个体验中，你完全是电影中的主角。比如你在这段体验中扮演“捉鬼敢死队”队员，也就是电影的主角，同行的玩伴则扮演剧中的队友。进去以后，最大的感受就是所谓的全沉浸感，比如说你能触摸和感觉到你所看到的墙和栅栏，当你看到一把椅子的时候，你也可以坐上去；另外，墙上的火把，你不但可以拿来照亮黑暗的走廊，甚至还能感受到它的热度。</p><p>不仅如此，The Void 还设置了很多逼真的细节：</p><p><ul><li>比如故事的设定是你走在一条挂满蜘蛛丝的走廊上，它真实到你确实得用手拨开蜘蛛丝；</li><li>在剧情中，你能够实实在在地感受到被枪击中的冲击力，可以感受到微风、震动和温度变化，以及清晰的环绕三维视觉呈现；</li><li>更神奇的是，明明这个体验中心只有几十平米，却能让你以为自己走在一个很大的空间里，甚至穿越了很多房间和楼层。</li></ul></p><p>总之，&nbsp;<font color="#e8731f">引人入胜的情节、酷炫的视觉音响效果、超级真实的感官体验，以及团队的互动体验，可以说使得 Void 不愧是地表最强娱乐设施。&nbsp;</font>Youtube 上类似的测评视频非常多，VR 迷们都给了这段体验超高评价，他们认为，这才是娱乐的未来，你也可以去搜搜看。</p>
+                </div>
+                <!-- 需要处理空白p标签 -->
+                <h2 >三、The Void 极致体验背后的科技</h2>
+                <div class="text ">
+                    <p>The Void 娱乐中心这么令人惊讶的极致体验，不禁让人感到好奇，究竟这背后有着怎样的技术支持呢？</p><p>我想主要有三点：</p><p><b>第一，是 VR 虚拟视觉和物理环境完美匹配叠加的 5D 感知效果&nbsp;</b></p><p>现在市场上主流的 VR 提供商，像 Oculus Rift、HTC Vive，或者三星的 Odyssey 都希望把它们生产的 VR 设备能够成为消费者家庭娱乐中的组成部分。但问题是，普通的 VR 设备通常都需要戴头显，用手柄充当武器，这种形式的整个体验就很难做到真实。</p><p>为什么这么说呢？</p><p>因为当我们进入到一个虚拟环境的时候，在潜意识中就特别想知道这是真的吗？然后我们就会从周围开始寻找线索，一旦你发现你拿的是手柄，而不是手枪，而且背后还有一根线牵着的时候，你就很容易跳戏。</p><p>但是，The Void 不同，它可是做到了超现实的 5D 体验，具体来说，The Void 坚持利用线下体验中心，精心打造物理环境，就是为了给玩家最好的沉浸感和体验的真实性，它让你不但能摸到东西，还有类似 4D 影院的那种微风、温度改变、气味、 振动和水雾的感觉。 </p>
+                </div>
+                <!-- 需要处理空白p标签 -->
+                <div class="text ">
+                    <p><b>第二，是 The Void 公司研发出来的 Rapture 硬件，以及VR解决方案&nbsp;</b></p><p>我们刚刚提到了玩家体验时会穿一些装备，这些装备就是 Rapture 装备。他们是 The Void 公司全自主研发的专利产品，和家用的 VR 设备不同，The Void 因为不用过多考虑造价太贵，是否会让顾客无法负担的问题，所以他们可以投入更多资金来打造一流的 VR 设备。</p><p>这个装备包括3个物件：</p><p><ul><li>首先，是一个配有全曲面 OLED 显示屏的头显，具备更高分辨率的屏幕和更宽的180度视野。作为参考，Oculus Rift 的视野是110度。</li><li>其次，是一个触觉背心，这个背心里面内置了22个触点，能给你带来振动和冲击等等感受。他们也为系统的运动追踪提供了关键数据信号。</li><li>最后，是一个电脑背包，直接把电脑背在身后，能让玩家在舞台中自由行走，不被任何线牵连。</li></ul></p>
+                </div>
+                <!-- 需要处理空白p标签 -->
+                <div class="text ">
+                    <p><b>第三，是重定向行走&nbsp;</b></p><p>刚才我们说过，Void 娱乐中心面积都不大，那么怎样在小空间之内创造无限的空间体验呢？</p><p>你可别忘了，创始人之一 Curtis 可是个有着10几年经验的魔术师，他最擅长幻视设计，也就是欺骗你的眼睛。其实在 The Void 体验当中，玩家大多走的是曲线，甚至是转弯，但是因为视觉信号受到刺激后产生神经反馈，削弱了我们对直线的感知能力，让人误以为自己一直在走直线。 </p>
+                </div>
+                <!-- 需要处理空白p标签 -->
+                <figure>
+                    <img src="https://piccdn.igetget.com/img/201712/26/201712262325216530429855.jpg@750w"/>
+                    <figcaption>Void 娱乐中心舞台的模型图</figcaption>
+                </figure>
+                <div class="text ">
+                    <p>这种迷宫式的造型，既节省空间，又节约成本，这也给The Void全球推广创造了条件。 </p>
+                </div>
+                <!-- 需要处理空白p标签 -->
+                <h2 >四、加速全球化</h2>
+                <div class="text ">
+                    <p>今年7月，迪士尼宣布投资 The Void，The Void 也在同年加入了迪士尼集团的投资孵化项目 Disney Accelerator，也就是迪士尼加速器。主要是以投资科技和娱乐产业结合的创业公司为主。</p><p><b>顺便说一句：</b></p><p>我们投资的 Hanson Robotics 也很荣幸地加入了迪士尼加速器，而且应该比 The Void 要早。</p><p>The Void 和迪士尼双方主要是以这样的形式互利合作的：</p><p><ul><li>一方面，迪士尼乐园的流量能够帮助 The Void 获得更多的客户；</li><li>反过来，The Void 也能帮助迪士尼乐园丰富和升级现有的娱乐体验。</li></ul></p>
+                </div>
+                <!-- 需要处理空白p标签 -->
+                <div class="text ">
+                    <p>而且，娱乐中心计划每个季度都推出新的故事情节，不断吸引玩家回来体验，而且这些故事可以想象，基本都是迪士尼拍的大片。可以看到，智能文娱行业对 VR 的需求非常强烈，迪士尼力推 The Void 就是一个重大利好的标志，说明 VR 在娱乐行业中的应用很快就会推广开来，我们也希望中国有这样的影视公司和这样的 VR 公司进行深度的绑定合作。</p><p>讲到这儿，你是不是也很想亲自体验一把呢？</p><p>现在 The Void 公司全球化速度非常快，就在去年2月份，盛大集团宣布以3亿5千万美金投资了 The Void，将在中国共同建造大型的 VR 主题公园，让我们拭目以待吧。</p><p>当然，在中国的 VR 主题公园没有建起来之前，你也可以去国外体验，而且从 The Void 的布局看，各地的主题公园可能也会各有特色。我们一直强调，&nbsp;<font color="#e8731f">对前沿科技的热爱要从体验开始，这样才能体会到科技的温度，对科技的未来形成感性的了解和直觉式的判断能力。&nbsp;</font>也许我们2018年的美国科技游学就会带大家去 The Void 体验一下哦。</p>
+                </div>
+                <!-- 需要处理空白p标签 -->
+                <h2 class="titleCenter">
+                    <div>
+                        <span>今日内容小结</span>
+                    </div>
+                </h2>
+                <div class="text ">
+                    <p>总结一下，今天我们介绍了应用VR技术来升级娱乐体验方面的领先公司The Void，希望你能掌握以下三点： </p>
+                </div>
+                <!-- 需要处理空白p标签 -->
+                <div class="text ">
+                    <p>第一，在娱乐体验方面，我们将不再满足于单纯的视听体验，和 VR、AR 和 MR 科技的结合将无限拓展我们的娱乐体验。</p><p>第二，The Void 从建造大型主题公园转向主推小型娱乐体验中心，同时又和娱乐巨头公司迪士尼合作，加快全球布局。同样的，迪士尼也力推 The Void，对于 VR 在智能文娱行业的大规模应用来说，这是个重大利好。</p><p>第三，其实这只是个示范，未来这样的合作会越来越多，因为双方是完全互补的，很多大型的娱乐公司尤其是影视公司拥有大量的 IP，也有大量的故事情节，而利用 VR 来对这些情节进行改造确实是最完美的合作。</p>
+                </div>
+                <!-- 需要处理空白p标签 -->
+                <h2 class="titleCenter">
+                    <div>
+                        <span>今日思考题</span>
+                    </div>
+                </h2>
+                <div class="text ">
+                    <p>你是否体验过类似的 VR 主题公园呢？如果体验过 The Void 的人来给我们回答，当然是最好的了。对于 VR 主题公园的体验，你还有什么可以期待的呢？</p><p><b>欢迎你在留言区分享你的观点。&nbsp;</b></p>
+                </div>
+                <!-- 需要处理空白p标签 -->
+                <div class="quoted">
+                    <div class="author">
+                        <img src="https://piccdn.igetget.com/img/201707/28/201707281123073248911910.jpg@100w_100h"/>
+                        <p>王煜全</p>
+                    </div>
+                    <blockquote>
+                        <p><p>我是王煜全，你的全球科技前哨侦察兵，我们明天见。
+</p></p>
+                    </blockquote>
+                </div>
+    </div>
+</article>
+        
+        <div id="audioContainer"></div>
+    </div>
+    <div class="actions">
+    <a href="https://h5.sao.cn/product/detail?alias=nsgbvl0gueg3&amp;spm=igeto300" class="feed" onclick="typeof _hmt !=='undefined' && _hmt.push(['_trackEvent', '抢读', '去订《全球创新260讲》', user.nickname, document.title])">去订《全球创新260讲》</a>
+    </div>
+    <script>
+        var deviceAnd = (/android/i).test(window.navigator.userAgent);
+        var imgUrl = "https://piccdn.igetget.com/img/201707/29/201707291004343152231742.jpg@400w_1l_";
+        if(deviceAnd){
+           imgUrl = imgUrl.replace(/https:\/\//g, "http://")
+        }
+    window.shareInfo = {
+    	title: "用VR创新应用打造极致娱乐体验丨「全球创新260讲」专栏限量免费读",
+    	desc: "VR科技公司与大型娱乐公司的IP资源结合，会极大的促进VR在文娱产业的大规模应用。",
+    	link: window.location.origin + '/subscribe/jaWZ0XaVLWzD8JEYoZ5AkeqO3vwlA2WeTNC7V4pRMKB4l61yj7bN29gmnxrdGVm0',
+    	imgUrl: imgUrl
+    };
+    </script>
+<script type="text/javascript" src="https://staticcdn.igetget.com/docker/iget-h5-node/js/project/common.4b4dbe7ec8cdca6d1a9b.dist.js"></script>
+<script type="text/javascript" src="https://staticcdn.igetget.com/docker/iget-h5-node/js/project/subscribe/detail/main.f0fb23110c32d4305551.dist.js"></script>
+</body>
+</html>

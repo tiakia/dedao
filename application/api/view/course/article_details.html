@@ -1,0 +1,30 @@
+{include file="open/header" /}
+
+<link href="__PUBLIC__/css/audio.css" rel="stylesheet">
+<div class="container">
+	<div class="col-md-8">
+		<h1 class="news-title">{$article_info.title}</h1>
+		<div class="news-status">{:date('Y-m-d',$article_info.create_time)} 发布
+			<div class="label label-default">理财</div>
+			<div class="label label-default">金融</div>
+			<div class="label label-default">香帅</div>
+		</div>
+		<div class="news-content">
+			<div class="player-v2" id="audio-1514300725158">
+				<div class="player-wrap">
+					<!-- i-play / i-pause -->
+					<button class="i-play"></button>
+					<div class="progress-group">
+						<div class="audio-title">108｜用VR创新应用打造极致娱乐体验——迟墨墨</div>
+						<input type="range" min="0" max="100" value="0" data-current="0:00" data-max="12:17" data-total="737"/>
+					</div>
+					<audio title="108｜用VR创新应用打造极致娱乐体验——迟墨墨" src="http://igetoss.cdn.igetget.com/mp3/201712/26/201712262305410785861860.mp3" preload cover="https://piccdn.igetget.com/img/201704/24/201704242328257260784871.jpg" cover-img="https://piccdn.igetget.com/img/201704/24/201704242328257260784871.jpg"></audio>
+				</div>
+			</div>
+		　　<div>{$article_info.content}</div>
+		</div>
+	</div>
+	<div class="col-md-4"></div>
+	     
+</body>
+</html>

@@ -1,0 +1,46 @@
+{include file="open/header" /} 
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li><a href="{:url('website/navigation')}">导航列表</a></li>
+			<li class="active"><a>添加导航</a></li>
+		</ul>
+		<form method="post" class="form-horizontal js-ajax-form" action="{:url('website/add_post')}">
+			<fieldset>
+				<div class="control-group">
+					<label class="control-label">导航类型:</label>
+					<div class="controls">
+						<input type="text" name="" value="自定义导航" disabled="disabled">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">标题:</label>
+					<div class="controls">
+						<input type="text" name="nav_title" value="">
+						<span class="form-required">*</span>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">链接:</label>
+					<div class="controls">
+						<input type="text" name="nav_url" value="http://">
+						<span class="form-required">*</span>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">排序:</label>
+					<div class="controls">
+						<input type="text" name="nav_sort" value="" style="width:40px;">
+					</div>
+				</div>
+			</fieldset>
+			<div class="form-actions">
+				<button type="submit" class="btn btn-primary js-ajax-submit">添加</button>
+				<a class="btn" href="javascript:history.back(-1);">返回</a>
+			</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>

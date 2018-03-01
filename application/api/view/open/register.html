@@ -1,0 +1,45 @@
+{include file="open/header" /}
+
+	<div class="container container-small">
+		<h1>注册
+			<small>没有账号？<a href="{:url('open/register')}">注册</a></small>
+		</h1>
+
+		<form action="{:url('open/doregister')}" method="post">
+			<div class="form-group">
+				<label>手机</label>
+				<input type="text" name="member_mobile" class="form-control">
+			</div>
+			<div class="form-group">
+				<label>昵称</label>
+				<input type="text" name="member_name" class="form-control">
+			</div>
+			<div class="form-group">
+				<label>密码</label>
+				<input type="password" name="member_pass" class="form-control">
+			</div>
+			<!-- <div class="form-group">
+				<label>验证码</label>
+				<div class="input-group">
+					<input type="text" class="form-control">
+					<div class="input-group-btn">
+						<div class="btn btn-default">获取验证码</div>
+					</div>
+				</div>
+			</div> -->
+			<div class="form-group">
+				<label>确认密码</label>
+				<input type="password" name="member_confirm" class="form-control">
+			</div>
+			<div class="from-group">
+				<button class="btn btn-primary btn-block" type="submit">注册</button>
+			</div>
+			<div class="form-group">
+				注册普罗米修斯即代表您同意<a href="#">普罗米修斯服务条款</a>
+			</div>
+	
+		</form>
+	</div>
+		
+</body>
+</html>

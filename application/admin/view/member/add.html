@@ -1,0 +1,86 @@
+{include file="open/header" /} 
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li><a href="{:url('member/index')}">会员列表</a></li>
+			<li class="active"><a>会员添加</a></li>
+		</ul>
+		<form method="post" class="form-horizontal js-ajax-form" action="{:url('member/add_post')}">
+			<fieldset>
+				<div class="control-group">
+					<label class="control-label">手机</label>
+					<div class="controls">
+						<input type="text" name="member_mobile" value="">
+						<span class="form-required">*</span>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">开通权限</label>
+					<div class="controls">
+						{foreach name="nav_data" item="vo"}
+							<input type="checkbox" name="member_limit[]" value="{$vo.nav_id}">{$vo.nav_title}
+						{/foreach}
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">昵称</label>
+					<div class="controls">
+						<input type="text" name="member_name" value="">
+						<span class="form-required">*</span>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">密码</label>
+					<div class="controls">
+						<input type="password" name="member_pass" value="">
+						<span class="form-required">*</span>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">购买课程ID</label>
+					<div class="controls">
+						<input type="password" name="course_id" value="">
+						<span class="form-required">*&nbsp;多门课程以逗号分隔开</span>
+					</div>
+				</div>
+			</fieldset>
+			<div class="form-actions">
+				<button type="submit" class="btn btn-primary js-ajax-submit">添加</button>
+				<a class="btn" href="javascript:history.back(-1);">返回</a>
+			</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+	<script>
+
+		function avatar_upload(obj){
+			var $fileinput=$(obj);
+			Wind.css("jcrop");
+			Wind.use("ajaxfileupload","jcrop","noty",function(){
+				$.ajaxFileUpload({
+					url:"{:url('member/avatar_upload')}",
+					secureuri:false,
+					fileElementId:'avatar_uploder',
+					dataType: 'json',
+					success: function (data){
+						if(data.code == 1){
+							var src= "__UPLOAD__avatar/"+data.file;
+							open_iframe_dialog("{:url('member/pic_cut',array('type' => 'member'))}" + "&x=120&y=120&src="+src,'图片裁剪',{'width' : '690px','height':'auto'});
+						}else{
+							artdialog_alert(data.msg);
+						}
+						
+					},
+					error: function (data, status, e){}
+				});
+			});
+			return false;
+		}
+		//裁剪图片后返回接收函数
+		function call_back(picname){
+			$('#member_avatar').val(picname);
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+{include file="open/header" /} 
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li><a href="{:url('member/index')}">会员列表</a></li>
+			<li><a href="{:url('member/add')}">会员添加</a></li>
+			<li class="active"><a>编辑会员</a></li>
+		</ul>
+		<form method="post" class="form-horizontal js-ajax-form" action="{:url('member/edit_post')}">
+			<fieldset>
+				<div class="control-group">
+					<label class="control-label">手机</label>
+					<div class="controls">
+						<input type="text" name="member_mobile" value="{$member_info.member_mobile}">
+						<span class="form-required">*</span>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">开通权限</label>
+					<div class="controls">
+						{foreach name="nav_data" item="vo"}
+							<input type="checkbox" name="member_limit[]" value="{$vo.nav_id}" {php}if(in_array($vo['nav_id'],$member_limit)){echo 'checked="checked"';}{/php}>{$vo.nav_title}
+						{/foreach}
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">昵称</label>
+					<div class="controls">
+						<input type="text" name="member_name" value="{$member_info.member_name}">
+						<span class="form-required">*</span>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">密码</label>
+					<div class="controls">
+						<input type="password" name="member_pass" value="{$member_info.member_pass}">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">购买课程ID</label>
+					<div class="controls">
+						<input type="text" name="course_id" value="{$member_info.buy_course}">
+						<span class="form-required">*&nbsp;多门课程以逗号分隔开</span>
+					</div>
+				</div>
+			</fieldset>
+			<div class="form-actions">
+				<input type="hidden" name="member_id" value="{$member_info.member_id}" />
+				<button type="submit" class="btn btn-primary js-ajax-submit">保存</button>
+				<a class="btn" href="javascript:history.back(-1);">返回</a>
+			</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>

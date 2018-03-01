@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>普罗米修斯</title>
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<link rel="stylesheet" href="http://list-1252895662.coscd.myqcloud.com/CSS/main.css">
+	<script src="__PUBLIC__/js/jquery.js"></script>
+</head>
+<script type="text/javascript">
+    $(document).ready(function(){
+    	$("#nav_click>li").click(function(){
+    		$(this).addClass("active");
+    		$(this).siblings().removeClass('active');
+    	});
+       //  $(".level1>a").click(function(){
+       //      $(this).addClass("current")     
+       //          .next().show()     //下一个元素显示
+       //          .parent().siblings().children("a").removeClass("current")     //父元素的同辈元素的子元素<a>移除“current”样式
+       //          .next().hide();  //他们的下一个元素隐藏
+     		// return false;
+       //  })
+    })
+</script>
+<body>
+<div class="navbar navbar-default" style="height:60px;margin-bottom:0;">
+	<div class="container" >
+			<div class="navbar-header">
+				<a href="{:url('index/index')}" class="navbar-brand" ></a>
+			</div>
+		    <label id="toggel-label" class="visible-xs-inline-block" for="toggel-checkbox">MENU</label>
+		    <input class="hidden" id ="toggel-checkbox" type="checkbox">
+			<div class="hidden-xs">
+				<ul class="nav navbar-nav" id="nav_click">
+					<!-- <li class="active"><a href="{:url('index/index')}">得到APP</a></li> -->
+					{foreach name="nav_data" item="vo"}
+						<li><a href="{$vo.nav_url}" >{$vo.nav_title}</a></li>
+					{/foreach}
+				</ul>
+				<!-- <ul class="nav navbar-nav" style="margin-top:13px;margin-left:200px;">
+					<input type="text" node-type="searchInput" autocomplete="off" value="" class="W_input" name="15156554280812" style="width:200px;border-color:">
+				</ul> -->
+				<ul class="nav navbar-nav navbar-right">
+					{if condition="$Think.cookie.member_name"}
+						<li><a href="javascript:;">{$Think.cookie.member_name}</a></li>
+						<li><a href="{:url('open/logout')}">退出</a></li>
+					{else/}
+						<li><a href="{:url('open/login')}">登录</a></li>
+						<li><a href="{:url('open/register')}">注册</a></li>
+					{/if}
+				</ul>
+			</div>
+	</div>	
+</div>

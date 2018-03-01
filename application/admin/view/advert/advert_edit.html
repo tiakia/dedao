@@ -1,0 +1,86 @@
+{include file="open/header" /} 
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li><a href="{:url('advert/index')}">广告位管理</a></li>
+			<li><a href="{:url('advert/index',array('id'=>$data.position.position_id))}">广告管理</a></li>
+			<li><a href="{:url('advert/advert_add',array('id'=>$data.position.position_id))}">添加广告</a></li>
+			<li class="active"><a href="{:url('advert/advert_edit',array('id'=>$data.position.position_id))}">编辑广告</a></li>
+		</ul>
+		<form method="post" class="form-horizontal js-ajax-form" action="{:url('advert/advert_edit_post')}">
+			<fieldset>
+				<div class="control-group">
+					<label class="control-label">广告名称</label>
+					<div class="controls">
+						<input type="text" name="title" value="{$data.title}">
+						<span class="form-required">*</span>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">所属广告位</label>
+					<div class="controls">
+						<input type="text" placeholder="{$data.position.name}" disabled>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">类别</label>
+					<div class="controls">
+						<input type="text" placeholder="{if condition="$data.position.type eq 1"}图片{else/}文字{/if}" disabled>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">开始时间</label>
+					<div class="controls">
+						<input type="text" name="start_time" value="{:date('Y-m-d H:i:s',$data.start_time)}" class="js-datetime date">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">结束时间</label>
+					<div class="controls">
+						<input type="text" name="end_time" value="{:date('Y-m-d H:i:s',$data.end_time)}" class="js-datetime date">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">广告链接地址</label>
+					<div class="controls">
+						<input type="text" name="adv_pic_url" value="{$data.content.adv_pic_url}" >
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">分享链接地址</label>
+					<div class="controls">
+						<input type="text" name="adv_share_url" value="{$data.content.adv_share_url}" >
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">图片</label>
+					<div class="controls">
+						<div class="input-append input-avatar">
+							<input type="text" name="adv_pic" value="{$data.content.adv_pic}" id="adv_pic">
+							<input type="file" name="advert" value="" onchange="set_name(this)">
+							<button class="btn btn-info" type="button">浏览</button>
+						</div>
+					</div>
+				</div>
+				
+			</fieldset>
+			<div class="form-actions">
+				<input type="hidden" name="id" value="{$data.position.position_id}" />
+				<input type="hidden" name="advert_id" value="{$data.advert_id}" />
+				<button type="submit" class="btn btn-primary js-ajax-submit">保存</button>
+				<a class="btn" href="javascript:history.back(-1);">返回</a>
+			</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+	<script>
+	function set_name(obj){
+		var input = $(obj);
+		if (input.val() != '') {
+			$("#adv_pic").val(input.val());
+		};
+	}
+	</script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+{include file="open/header" /}
+ <title>得到</title>
+ <link rel="stylesheet" href="__PUBLIC__/css/dedao/dropload.css">
+ <link rel="stylesheet" href="__PUBLIC__/css/dedao/index.css">
+</head>
+<body>
+    <header>
+        <!-- 搜索框 -->
+        <div class="search">
+            <i class="iconfont icon-sousuo"></i>
+            <input type="text" name='search' class="form-input"/>
+        </div>
+        <!-- 菜单 -->
+        <div class="menu-container">
+            <div class="icon-left">
+                <i class="iconfont icon-shaixuan"></i>
+                <span>筛选</span>
+            </div>
+            <ul class="right-menu">
+                <li class="active">
+                    <a>全部    
+                    </a>
+                </li>
+                <li>
+                    <a>订阅专栏
+                        <i class="iconfont icon-xiangxia-copy"></i>
+                    </a>
+                    <div class="dropdown">
+                        <a>读书</a>
+                        <a>看报</a>
+                        <a>少吃零食</a>
+                        <a>少睡觉</a>
+                    </div>
+                </li>
+                <li>
+                    <a>每天听本书
+                        <!-- <i class="iconfont icon-xiangxia-copy"></i> -->
+                    </a>
+                </li>
+                <li>
+                    <a>课程
+                        <i class="iconfont icon-xiangxia-copy"></i>
+                    </a>
+                    <div class="dropdown">
+                        <a>读书1</a>
+                        <a>看报1</a>
+                        <a>少吃零食1</a>
+                        <a>少睡觉1</a>
+                    </div>
+                </li>
+                <li>
+                    <a>电子书
+                        <!-- <i class="iconfont icon-xiangxia-copy"></i> -->
+                    </a>
+                </li>
+                <li>
+                    <a>我的课程1
+                        <i class="iconfont icon-xiangxia-copy"></i>
+                    </a>
+                    <div class="dropdown">
+                        <a>读书12</a>
+                        <a>看报12</a>
+                        <a>少吃零食12</a>
+                        <a>少睡觉12</a>
+                    </div>
+                </li>
+                <li>
+                    <a>我的课程2
+                        <i class="iconfont icon-xiangxia-copy"></i>
+                    </a>
+                    <div class="dropdown">
+                        <a>读书123</a>
+                        <a>看报123</a>
+                        <a>少吃零食123</a>
+                        <a>少睡觉123</a>
+                    </div>
+                </li>
+                <li>
+                    <a>我的课程3
+                        <i class="iconfont icon-xiangxia-copy"></i>
+                    </a>
+                    <div class="dropdown">
+                        <a>读书1234</a>
+                        <a>看报1234</a>
+                        <a>少吃零食1234</a>
+                        <a>少睡觉1234</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <!-- 二级菜单 -->
+    <div id="dropdown">
+        <a>读书</a>
+        <a>看报</a>
+        <a>少吃零食</a>
+        <a>少睡觉</a>
+    </div>
+    <!-- 主体部分 -->
+    <main  id="mescroll">
+        <ul class="class-list">
+        {foreach name="course_info" item="vo"}
+            <li class="class-item">
+                <a href="{:url('Course/item',['course_id'=>$vo['course_id']])}">
+                    <img src="{$vo['thumb']}" alt="">
+                    <span class="class-text">
+                        {$vo.title}
+                    </span>
+                </a>
+            </li>
+        {/foreach}  
+        </ul>
+    </main>
+{include file="open/footer" /} 

@@ -1,0 +1,136 @@
+{include file="open/header" /} 
+</head>
+<body>
+	<div class="wrap js-check-wrap">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="javascript:;">课程管理</a></li>
+			<li><a href="{:url('course/add')}" target="_self">添加课程</a></li>
+		</ul>
+		<form class="well form-search" method="get" action="{:url('course/index')}">
+			课程名称： 
+			<input type="text" name="course_name" value="{$Think.get.course_name}" style="width: 160px;" autocomplete="off"> &nbsp; &nbsp;
+			作者： 
+			<input type="text" name="author_name" value="{$Think.get.author_name}" style="width: 100px;" autocomplete="off"> &nbsp; &nbsp;
+			课程ID： 
+			<input type="text" name="course_id" value="{$Think.get.course_id}" style="width: 50px;" autocomplete="off"> &nbsp; &nbsp;
+			课程类型： 
+			<select name="is_free" style="width:100px;">
+				<option>请选择</option>
+				<option value="0">免费课程</option>
+				<option value="1">付费课程</option>
+			</select>
+			<input type="submit" class="btn btn-primary" value="搜索" />
+			<a class="btn btn-danger" href="{:url('course/index')}">清空</a>
+		</form>
+			<table class="table table-hover table-bordered table-list">
+				<thead>
+					<tr>
+						<th width="50">ID</th>
+						<th width="430">标题</th>
+						<th width="70">封面图</th>
+						<th >作者</th>
+						<th >所属平台</th>
+						<th >课程分类</th>
+						<th >状态</th>
+						<th >是否付费</th>
+						<th >发布时间</th>
+						<th width="200">操作</th>
+					</tr>
+				</thead>
+				{foreach name="lists" item="vo"}
+				<tr>
+                    <td><b>{$vo.course_id}</b></td>
+					<td>{$vo.title}</td>
+					<td><img src="{$vo.thumb|strexists='http' ? $vo.thumb : '__UPLOAD__/avatar/'.$vo['thumb']}" width="20" height="20"></td>
+					<td>{$vo.author_name}</td>
+					<td>{$vo.plat_name}</td>
+					<td>{$vo.cate_name}</td>
+					<td>{if condition="$vo.is_use eq 1"}上架{else/}下架{/if}</td>
+					<td>{if condition="$vo.is_free eq 1"}是{else/}否{/if}</td>
+					<td>{:date("Y-m-d H:i")}</td>
+					<td>
+						<a href="{:url('article/index',array('course_id'=>$vo['course_id']))}">课程列表</a> | 
+						<a href="{:url('course/edit',array('course_id'=>$vo['course_id']))}">编辑</a> | 
+						<a href="{:url('course/delete',array('course_id'=>$vo['course_id']))}" class="js-ajax-delete">删除</a> | 
+						{if condition="$vo.is_use eq 1"}
+						<a href="{:url('course/lock',array('course_id'=>$vo['course_id']))}"  class="js-ajax-dialog-btn" data-msg="您确定要下架此课程吗？">下架</a> 
+						{elseif condition="$vo.is_use eq 0"/}
+						<a href="{:url('course/unlock',array('course_id'=>$vo['course_id']))}"  class="js-ajax-dialog-btn" data-msg="您确定要上架此课程吗？">上架</a> 
+						{/if}
+						
+					</td>
+				</tr>
+			    {/foreach}
+			</table>
+			<div class="pagination">{$lists->render()}</div>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+	<script>
+		function refersh_window() {
+			var refersh_time = getCookie('refersh_time');
+			if (refersh_time == 1) {
+				window.location = "{:url('AdminPost/index')}";
+			}
+		}
+		setInterval(function() {
+			refersh_window();
+		}, 2000);
+		$(function() {
+			setCookie("refersh_time", 0);
+			Wind.use('ajaxForm', 'artDialog', 'iframeTools', function() {
+				//批量复制
+				$('.js-articles-copy').click(function(e) {
+					var ids=[];
+					$("input[name='ids[]']").each(function() {
+						if ($(this).is(':checked')) {
+							ids.push($(this).val());
+						}
+					});
+					if (ids.length == 0) {
+						art.dialog.through({
+							id : 'error',
+							icon : 'error',
+							content : '您没有勾选信息，无法进行操作！',
+							cancelVal : '关闭',
+							cancel : true
+						});
+						return false;
+					}
+					
+					ids= ids.join(',');
+					art.dialog.open("/index.php/admin/article/header?ids="+ ids, {
+						title : "批量复制",
+						width : "300px"
+					});
+				});
+				//批量移动
+				$('.js-articles-move').click(function(e) {
+					var ids=[];
+					$("input[name='ids[]']").each(function() {
+						if ($(this).is(':checked')) {
+							ids.push($(this).val());
+						}
+					});
+					
+					if (ids.length == 0) {
+						art.dialog.through({
+							id : 'error',
+							icon : 'error',
+							content : '您没有勾选信息，无法进行操作！',
+							cancelVal : '关闭',
+							cancel : true
+						});
+						return false;
+					}
+					
+					ids= ids.join(',');
+					art.dialog.open("/index.php/admin/article/move?old_term_id=1&ids="+ ids, {
+						title : "批量移动",
+						width : "300px"
+					});
+				});
+			});
+		});
+	</script>
+</body>
+</html>

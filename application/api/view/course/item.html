@@ -1,0 +1,109 @@
+{include file="open/header" /}
+<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+	<div class="container" style="margin-top:20px;">
+		<div class="row">
+		<!-- <div class="col-sm-2">
+			<div class="hidden-xs list-group side-bar">
+				<a href="#" class="list-group-item active">综合</a>
+				<a href="#" class="list-group-item">创业指南</a>
+				<a href="#" class="list-group-item">处世之道</a>
+				<a href="#" class="list-group-item">经济思维</a>
+				<a href="#" class="list-group-item">科学思维</a>
+				<a href="#" class="list-group-item">亲子育儿</a>
+				<a href="#" class="list-group-item">能力提升</a>
+				<a href="#" class="list-group-item">艺术修养</a>
+				<a href="#" class="list-group-item">诗词文学</a>
+			</div>
+		</div> -->
+		<div class="col-sm-7" style=" width:100%;">
+			<div class="news-list">
+				{foreach name="lists" item="vo"}
+					<div class="news-list-item clearfix">
+						<a href="{:url('course/article_detail',['article_id'=>$vo['article_id'],'course_id'=>$vo['course_id']])}" class="title">
+							<!-- <div class="col-xs-6" style="width:270px;">
+								<img src="https://piccdn.igetget.com/img/201712/09/201712092237520856764819.jpg" >
+							</div> -->
+							<div course_id="{$vo.course_id}" id="course">{$vo.title}</div>
+						</a>
+						<div class="wenben" >
+							　{$vo.description}
+						</div>
+						<div class="info">	
+							<span class="avatar"><img src="{$vo.thumb|strexists='http' ? $vo.thumb : '__UPLOAD__/avatar/'.$vo['thumb']}" ></span>
+							<span>{$author_name}</span>·
+							<span>{:date('Y-m-d',$vo['create_time'])}</span>
+							<span>{$vo.view_nums}人读过</span>
+						</div>
+					</div>
+				{/foreach}
+				<div class="pager" id="page">{$page}</div>
+			</div>
+			
+		</div>
+		<div class="col-sm-3">
+			<!-- <div class="search-bar">
+				<input type="search" class="form-control" placeholder="搜一下">
+			</div>
+			<div class="side-bar-card flag clearfix">
+				<div class="col-xs-5">
+					<img src="img/1.jpg" alt="">
+				</div>
+				<div class="col-xs-7">
+					<div class="text-lg">问题反馈专区</div>
+					<div>　加入交流群</div>
+					<div>　575102866</div>
+				</div>
+
+			</div> -->
+			<!-- <div class="side-bar-card">
+				<div class="card-title">24小时热闻</div>
+				<div class="card-body">
+					<div class="list">
+						<div class="item">
+							<div class="title">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat, quae.
+							</div>
+							<div class="desc">15K阅读 1K评论 </div>
+						</div>
+						<div class="item">
+							<div class="title">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat, quae.
+							</div>
+							<div class="desc">15K阅读 1K评论 </div>
+						</div>
+						<div class="item">
+							<div class="title">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat, quae.
+							</div>
+							<div class="desc">15K阅读 1K评论 </div>
+						</div>
+						<div class="item">
+							<div class="title">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat, quae.
+							</div>
+							<div class="desc">15K阅读 1K评论 </div>
+						</div>
+						<div class="item">
+							<div class="title">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat, quae.
+							</div>
+							<div class="desc">15K阅读 1K评论 </div>
+						</div>
+						<div class="item">
+							<div class="title">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat, quae.
+							</div>
+							<div class="desc">15K阅读 1K评论 </div>
+						</div>
+					</div>
+				</div>
+			</div> -->
+		</div>
+		</div>
+		</div>
+	</div>	
+</body>
+</html>
+<script type="text/javascript">
+	$(function(){
+		// $("#page").click(function(){
+		// 	var course_id = $("#course").attr('course_id');
+		// 	var href = $(this).find('a').attr('href');
+		// 	$(this).find('a').attr('href',href+'&course_id='+course_id);
+		// });
+	});
+</script>

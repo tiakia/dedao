@@ -1,0 +1,20 @@
+{include file="open/header" /}
+
+{foreach name="cate_data" item="vo"}
+<div class="container" style="margin-top:40px;"><p style="font-family:Microsoft yahei;font-weight:bold;font-size:18px;border-left:3px solid green;" >&nbsp;{$vo.catname}</p>
+	<div class="img-list clearfix" style="height:530px;">
+		<div class="jiemu">
+			{foreach name="$vo['data']" item="vos"}
+				<a href="{:url('course/item',['course_id'=>$vos['course_id']])}">
+					<div class="col-xs-3" style="width:140px;">
+						<img src="{$vos.thumb|strexists='http' ? $vos.thumb : '__UPLOAD__/avatar/'.$vos['thumb']}">
+						<div style="width:120px;">{$vos.title}</div>
+					</div>
+				</a>
+			{/foreach}
+		</div>	
+	</div>	
+</div>	
+{/foreach}	
+</body>
+</html>

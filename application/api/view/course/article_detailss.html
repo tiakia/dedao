@@ -1,0 +1,268 @@
+
+
+<!DOCTYPE html>
+<html>
+<head lang="zh-cn">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <title>就不要对AI抒情了</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <link rel="dns-prefetch" href="https://staticcdn.igetget.com"/>
+    <link rel="dns-prefetch" href="https://piccdn.igetget.com"/>
+    <script type="text/javascript">
+    window.onerror = function (msg, url, lineNum, colNum, error) {
+      var err = { msg: msg, url: url, line: lineNum, column: colNum }
+      __uploadErrorMsg(err)
+    }
+
+    function __errorHandler (element) {
+      var err = {
+        tagName: element.tagName,
+        srcUrl: element.src || element.href,
+        pageUrl: window.location.href,
+        referrer: document.referrer,
+        isSecondTime: false
+      }
+
+      if (element.getAttribute('data-fallbacked')) {
+        err.isSecondTime = true
+        __uploadErrorMsg(err)
+        return false
+      }
+
+      __uploadErrorMsg(err)
+
+      try {
+        var url = new URL(err.srcUrl)
+        if (url.host === 'staticcdn.igetget.com') {
+          url.host = 'staticcdn2.igetget.com'
+        }
+        var ele = document.createElement(err.tagName)
+        // 遍历属性, 做href,src属性替换
+        for (var i = 0; i < element.attributes.length; i++) {
+          var attr = element.attributes[i]
+          if (attr.nodeName === 'onerror') {
+          } else if (attr.nodeName === 'href') {
+            ele[attr.nodeName] = url
+          } else if (attr.nodeName === 'src') {
+            ele[attr.nodeName] = url
+          } else {
+            ele[attr.nodeName] = attr.nodeValue
+          }
+        }
+        if (err.tagName === 'SCRIPT') {
+          ele.src = url.toString()
+          ele.setAttribute('data-fallbacked', 1)
+        } else if (err.tagName === 'LINK') {
+          ele.href = url.toString()
+          ele.setAttribute('data-fallbacked', 1)
+        }
+        ele.onerror = function () {
+          window.__errorHandler(ele)
+        }
+
+        element.parentElement.appendChild(ele)
+      } catch (e) {
+        console.log(e)
+      }
+    }
+
+    function __uploadErrorMsg (err) {
+      var oImg = new Image()
+      var errMsg = encodeURIComponent(JSON.stringify(err))
+      oImg.src = '/native/errorcollect?err=' + errMsg
+    }
+    </script>
+    
+    <script type="text/javascript" src="https://staticcdn.igetget.com/docker/iget-h5-node/js/libs/flexible.js"></script>
+    
+    
+    
+    <link href="https://staticcdn.igetget.com/docker/iget-h5-node/css/project/subscribe/index-new.8f7cda1d1e.css" rel="stylesheet">
+    
+    <link href="https://staticcdn.igetget.com/docker/iget-h5-node/css/project/subscribe/article-new.592d63bc76.css" rel="stylesheet">
+    
+    <script type="text/javascript">
+        var baseUrl = "https://staticcdn.igetget.com/docker/iget-h5-node/";
+    </script>
+    
+    
+    <script>
+    var APPVersion = 0;
+    ! function(a, b) {
+        function c() {
+            var b = f.getBoundingClientRect().width;
+            if(a.navigator.appVersion.match(/iphone/gi) && b < 500){
+                b = b * i
+            }
+            b / i > 540 && (b = 540 * i);
+            var c = b / 10;
+            f.style.fontSize = c + "px", k.rem = a.rem = c
+        }
+        var d, e = a.document,
+            f = e.documentElement,
+            g = e.querySelector('meta[name="viewport"]'),
+            h = e.querySelector('meta[name="flexible"]'),
+            i = 0,
+            j = 0,
+            k = b.flexible || (b.flexible = {});
+        if (g) {
+            console.warn("将根据已有的meta标签来设置缩放比例");
+            var l = g.getAttribute("content").match(/initial\-scale=([\d\.]+)/);
+            l && (j = parseFloat(l[1]), i = parseInt(1 / j))
+        } else if (h) {
+            var m = h.getAttribute("content");
+            if (m) {
+                var n = m.match(/initial\-dpr=([\d\.]+)/),
+                    o = m.match(/maximum\-dpr=([\d\.]+)/);
+                n && (i = parseFloat(n[1]), j = parseFloat((1 / i).toFixed(2))), o && (i = parseFloat(o[1]), j = parseFloat((1 / i).toFixed(2)))
+            }
+        }
+        if (!i && !j) {
+            var p = (a.navigator.appVersion.match(/android/gi), a.navigator.appVersion.match(/iphone/gi)),
+                q = a.devicePixelRatio;
+            i = p ? q >= 3 && (!i || i >= 3) ? 3 : q >= 2 && (!i || i >= 2) ? 2 : 1 : 1, j = 1 / i
+        }
+        if (f.setAttribute("data-dpr", i), !g)
+            if (g = e.createElement("meta"), g.setAttribute("name", "viewport"), g.setAttribute("content", "initial-scale=" + j + ", maximum-scale=" + j + ", minimum-scale=" + j + ", user-scalable=no"), f.firstElementChild) f.firstElementChild.appendChild(g);
+            else {
+                var r = e.createElement("div");
+                r.appendChild(g), e.write(r.innerHTML)
+            }
+        a.addEventListener("resize", function() {
+            clearTimeout(d), d = setTimeout(c, 300)
+        }, !1), a.addEventListener("pageshow", function(a) {
+            a.persisted && (clearTimeout(d), d = setTimeout(c, 300))
+        }, !1), "complete" === e.readyState ? e.body.style.fontSize = 12 * i + "px" : e.addEventListener("DOMContentLoaded", function() {
+            e.body.style.fontSize = 12 * i + "px"
+        }, !1), c(), k.dpr = a.dpr = i, k.refreshRem = c, k.rem2px = function(a) {
+            var b = parseFloat(a) * this.rem;
+            return "string" == typeof a && a.match(/rem$/) && (b += "px"), b
+        }, k.px2rem = function(a) {
+            var b = parseFloat(a) / this.rem;
+            return "string" == typeof a && a.match(/px$/) && (b += "rem"), b
+        }
+    }(window, window.lib || (window.lib = {}));
+    </script>
+    
+    <link href="https://staticcdn.igetget.com/docker/iget-h5-node/css/project/subscribe/index-new.8f7cda1d1e.css" rel="stylesheet">
+    
+    <link href="https://staticcdn.igetget.com/docker/iget-h5-node/css/project/subscribe/article-new.592d63bc76.css" rel="stylesheet">
+    
+
+    <!-- 新版本编辑器样式 -->
+    
+    <link href="https://staticcdn.igetget.com/www/editor/dist/preview.cdeac3c3993e3cb007d6.css" rel="stylesheet"/>
+    
+    
+        <style>
+        @font-face {
+            font-family: "font-text";
+            src: url(https://fontcdn.igetget.com//font-file/build/2307/400274fd5edf69153810a0593dbe61b7.woff);
+        }
+        .article .article-body p,.article .article-body ul li,.article .article-body ol li,.article .article-body .tips p b {
+            font-family: "font-text";
+        }
+    
+        @font-face {
+            font-family: "font-title";
+            src: url(https://fontcdn.igetget.com//font-file/build/2307/d86ed56b7d8b80a6a45482e0eadee33e.woff);
+        }
+        .article .title,.article h3.letter-item,.article h4.letter-item,.article .article-body h2.titleCenter {
+            font-family: "font-title";
+        }
+    
+        @font-face {
+            font-family: "font-tip";
+            src: url(https://fontcdn.igetget.com//font-file/build/2307/dcf37814d9f94a500d6669beaa49061f.woff);
+        }
+        .article .article-body .tag span,.article .article-body figure figcaption,.article .article-body .audio .audio-tips .text,.article .article-body .tips p,.article .article-body .audio .info span,.article .author {
+            font-family: "font-tip";
+        }
+    
+        @font-face {
+            font-family: "font-quoted";
+            src: url(https://fontcdn.igetget.com//font-file/build/2307/93cf1c2684ce337927e58cd74636b773.woff);
+        }
+        .article .article-body blockquote,.article .article-body blockquote p {
+            font-family: "font-quoted";
+        }
+    
+        @font-face {
+            font-family: "font-bold";
+            src: url(https://fontcdn.igetget.com//font-file/build/2307/323d1f6afd189af195b93365b714a54e.woff);
+        }
+        .article .article-body p b,.article .article-body b {
+            font-family: "font-bold";
+        }
+    </style>
+    
+
+
+    <script type="text/javascript">
+        var user = {"openid":"olFg1szQbEJSbUZtQuBK8BpxnZN8","nickname":"container","sex":1,"language":"zh_CN","city":" ","province":" ","country":" ","headimgurl":"http://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKqmlgRKDoQ7ydNrNyklcibZHtJiaGI3lBGjoebyes5ZHMvtpWkvAicicaE3JqTvv7x6eX7btrfXOI8ZQ/0","privilege":[],"unionid":"oDI7Dvkc35fZGzUZQt_6a_M9AHnc"};
+        var id = "0OvJKO9oea2b0BvWznx5qrMlgGp1kY3DINf8L2PEV8Xmdyk1JLDNA63Y4R7ZjyGb";
+        var votestatic = "";
+    </script>
+<!-- 该模块是前端的全局变量，比如ID，如下例子 -->
+    <!-- <script type="text/javascript">
+        var productId = "";
+    </script> -->
+</head>
+
+<body v-cloak>
+<article class="article default">
+    <h1 class="title name-0OvJKO9oea2b0BvWznx5qrMlgGp1kY3DINf8L2PEV8Xmdyk1JLDNA63Y4R7ZjyGb">{$article_info.title}</h1>
+    <div class="author">
+		
+        <img src="https://piccdn.igetget.com/img/201607/21/201607211433192911614980.jpg@100w_100h"/>
+		
+        <!-- <p>和菜头</p> -->
+        <span class="time">{:date('Y-m-d H:i',$article_info.create_time)}</span>
+    </div>
+    <div class="line"></div>
+	<div style="display:none;" v-cloak>
+		
+			container
+		
+		{&quot;openid&quot;:&quot;olFg1szQbEJSbUZtQuBK8BpxnZN8&quot;,&quot;nickname&quot;:&quot;container&quot;,&quot;sex&quot;:1,&quot;language&quot;:&quot;zh_CN&quot;,&quot;city&quot;:&quot; &quot;,&quot;province&quot;:&quot; &quot;,&quot;country&quot;:&quot; &quot;,&quot;headimgurl&quot;:&quot;http://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKqmlgRKDoQ7ydNrNyklcibZHtJiaGI3lBGjoebyes5ZHMvtpWkvAicicaE3JqTvv7x6eX7btrfXOI8ZQ/0&quot;,&quot;privilege&quot;:[],&quot;unionid&quot;:&quot;oDI7Dvkc35fZGzUZQt_6a_M9AHnc&quot;}
+	</div>
+    <div class="article-body">
+        
+            
+                <div class="text ">
+                    <p>{$article_info.content}</p>
+                </div>
+                <!-- 需要处理空白p标签 -->
+                <!-- <div class="quoted">
+                    <div class="author">
+                        <img src="{$article_info.thumb|strexists='http' ? $article_info.thumb : '__UPLOAD__/avatar/'.$article_info['thumb']}" >
+                        <p>呃呃呃</p>
+                    </div>
+                    <blockquote>
+                        <p><p>请你相信我，</p><p>我所说的每一句话，</p><p>都是错的。</p></p>
+                    </blockquote>
+                </div> -->
+                <div class="tag-content">
+                    <div class="tag">
+                        <span>禅定时刻</span>
+                    </div>
+                </div>
+                    <blockquote>
+                        <p>
+                            阿尔法狗60连胜说明了没有时空旅行这回事，在未来AI也没有取得人类社会的统治权。否则的话，现在它应该表演和人类互有胜负，小心翼翼地避免太早为人类所关注。
+                        </p>
+                    </blockquote>
+                <figure>
+                    <img src="https://piccdn.igetget.com/img/201701/05/201701051037121524502535.jpg@750w"/>
+                </figure>
+    </div>
+</article>
+        
+        
+<script type="text/javascript" src="https://staticcdn.igetget.com/docker/iget-h5-node/js/project/common.4b4dbe7ec8cdca6d1a9b.dist.js"></script>
+<script type="text/javascript" src="https://staticcdn.igetget.com/docker/iget-h5-node/js/project/subscribe/detail/main.f0fb23110c32d4305551.dist.js"></script> 
+</body>
+</html>
